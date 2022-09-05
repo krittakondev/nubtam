@@ -14,6 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button'
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, ButtonGroup } from "@mui/material"
+import Swal from "sweetalert2"
 
 export default function FixedBottomNavigation() {
   const [profiles, setProfiles] = React.useState([
@@ -154,8 +155,8 @@ export default function FixedBottomNavigation() {
           <Button color='primary' onClick={()=>{
             const old_profiles = profiles.splice(0)
             const nameEle = document.getElementById("edit_name")
-            if(nameEle.value == ""){
-              return window.alert("input error")
+            if(!nameEle.value){
+              return Swal.fire("โปรดกรอกชื่อก่อน", "", "warning")
             }
             old_profiles.splice(dialog_profile.index, 1, {
               name: nameEle.value,
@@ -190,7 +191,7 @@ export default function FixedBottomNavigation() {
             const old_profiles = profiles.splice(0)
             const nameEle = document.getElementById("add_name")
             if(!nameEle.value){
-              return window.alert("input error")
+              return Swal.fire("โปรดกรอกชื่อก่อน", "", "warning")
             }
             old_profiles.push({
               name: nameEle.value,
