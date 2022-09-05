@@ -115,6 +115,8 @@ export default function FixedBottomNavigation() {
           setDialog_profile({...dialog_profile, count: dialog_profile.old_count})
         }}>ล้าง</Button>
         <br />
+        <br />
+        <center>
         <ButtonGroup variant="outlined" aria-label="outlined primary button group">
           <Button style={{color: "gray"}} onClick={()=>{
             changeCount(-7)
@@ -128,6 +130,9 @@ export default function FixedBottomNavigation() {
           <Button style={{color: "green"}} onClick={()=>{
             changeCount(3)
           }}>เขียว</Button>
+        </ButtonGroup>
+
+        <ButtonGroup variant="outlined" aria-label="outlined primary button group">
           <Button style={{color: "brown"}} onClick={()=>{
             changeCount(4)
           }}>ช๊อก</Button>
@@ -141,19 +146,22 @@ export default function FixedBottomNavigation() {
             changeCount(7)
           }}>ดำ</Button>
         </ButtonGroup>
+
+        </center>
         </DialogContent>
 
         <DialogActions>
           <Button color='primary' onClick={()=>{
             const old_profiles = profiles.splice(0)
             const nameEle = document.getElementById("edit_name")
+            if(nameEle.value == ""){
+              return window.alert("input error")
+            }
             old_profiles.splice(dialog_profile.index, 1, {
               name: nameEle.value,
               count: dialog_profile.count
             })
-            
             setProfiles(old_profiles)
-            
           }}>
             บันทึก
           </Button>
@@ -181,12 +189,17 @@ export default function FixedBottomNavigation() {
           <Button color='primary' onClick={()=>{
             const old_profiles = profiles.splice(0)
             const nameEle = document.getElementById("add_name")
+            if(!nameEle.value){
+              return window.alert("input error")
+            }
             old_profiles.push({
               name: nameEle.value,
               count: 0
             })
             
             setProfiles(old_profiles)
+            nameEle.value = ""
+            
             
           }}>
             เพิ่ม
