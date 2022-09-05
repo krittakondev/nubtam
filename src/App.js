@@ -66,6 +66,15 @@ export default function FixedBottomNavigation() {
         <Button onClick={()=>{
           setDialog_open(true)
         }}>เพิ่มผู้เล่น</Button>
+        <Button color="secondary" onClick={()=>{
+          if(window.confirm("ต้องการเริ่มเกมใหม่ใช่หรือไม่?")){
+            setProfiles(profiles.map((val)=>{
+              val.count = 0
+              return val
+            }))
+            
+          }
+        }}>เริ่มใหม่</Button>
       </center>
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
         <BottomNavigation
